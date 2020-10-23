@@ -1,6 +1,4 @@
-const ActionType = {
-  SET_STOCKS: 'SET_STOCKS',
-};
+import { ActionType } from '../actions/stocks';
 
 const stocksReducer = (state = [], action) => {
   switch (action.type) {

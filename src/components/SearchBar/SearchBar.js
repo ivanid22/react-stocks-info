@@ -4,29 +4,18 @@ import './SearchBar.css';
 
 const testSuggestions = [
   {
-    symbol: 'MELI',
-    name: 'Mercadolibre',
-    exchange: 'NASDAQ',
+    name: 'abc',
   },
   {
-    symbol: 'GOOGL',
-    name: 'Alphabet',
-    exchange: 'NASDAQ',
+    name: 'abc',
   },
   {
-    name: 'Altest',
+    name: 'abc',
+  },
+  {
+    name: 'abc',
   },
 ];
-
-const getSuggestions = value => {
-  if (value.length === 0) return [];
-  const inputValue = value.trim().toLowerCase();
-
-  return testSuggestions.filter(stock => {
-    const substr = stock.name.toLowerCase().slice(0, inputValue.length);
-    return substr === value;
-  });
-};
 
 const getSuggestionValue = suggestion => suggestion.name;
 const renderSuggestion = suggestion => (
@@ -41,6 +30,16 @@ const SearchBar = () => {
 
   const onSuggestionsClearRequested = () => {
     setSuggestions([]);
+  };
+
+  const getSuggestions = value => {
+    if (value.length === 0) return [];
+    const inputValue = value.trim().toLowerCase();
+  
+    return testSuggestions.filter(stock => {
+      const substr = stock.name.toLowerCase().slice(0, inputValue.length);
+      return substr === value;
+    });
   };
 
   const onSuggestionsFetchRequested = ({ value }) => {
