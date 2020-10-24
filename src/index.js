@@ -9,15 +9,12 @@ import './index.css';
 import App from './App';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-const { REACT_APP_API_KEY, REACT_APP_API_URL } = process.env;
-const searchTerm = 'AABC';
-const limit = null;
 
 store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(fetchStocksSearchResults(null, 10));
+store.dispatch(fetchStocksSearchResults(null, 1));
 
 ReactDOM.render(
   <Provider store={store}>

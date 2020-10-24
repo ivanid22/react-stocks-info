@@ -11,27 +11,37 @@ export const setStocks = stocks => ({
 
 const { REACT_APP_API_URL, REACT_APP_API_KEY } = process.env;
 
-export const fetchStocksSearchResults = (searchTerm, limit) => {
+const getSymbolsString = symbolsArray => symbolsArray.reduce((commaSeparatedSymbols, symbol) => (`${commaSeparatedSymbols},${symbol}`));
+
+export const fetchStocksSearchResults = (searchTerm, limit = 10) => {
   return dispatch => {
-    const requestString = `${REACT_APP_API_URL}/search?query=${searchTerm || ''}&limit=${limit || '100'}&apikey=${REACT_APP_API_KEY}`;
+    const requestString = `${REACT_APP_API_URL}/search`;
     axios({
       method: 'GET',
       url: requestString,
       params: {
-        q: 'Paris',
-        appid: '97c94feb17a879afad3f559073cb4200',
+        query: searchTerm || '',
+        limit: limit.toString(),
+        apikey: REACT_APP_API_KEY,
       },
       headers: {
         Accept: 'application/json',
-        'Accept-Encoding': 'gzip, deflate, br',
-        Connection: 'keep-alive',
-        'User-Agent': 'PostmanRuntime/7.26.5',
         'Content-Type': 'application/json',
       },
     }).then(response => {
-        console.log(response.data);
+      const symbolsArray = response.data.map(stock => stock.symbol);
+      const secondRequestString = `${REACT_APP_API_URL}/profile/${getSymbolsString(symbolsArray)}`;
+      axios({
+        method: 'GET',
+        url: secondRequestString,
+        params: {
+          apikey: REACT_APP_API_KEY,
+        },
+      }).then(finalResponse => {
+        dispatch(setStocks(finalResponse.data));
+      }).catch(error => console.log(error.message));
     }).catch(error => {
-        console.log(error.message);
-    })
+      console.log(error.message);
+    });
   };
 };
