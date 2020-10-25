@@ -10,11 +10,13 @@ import App from './App';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
+store.dispatch(fetchStocksSearchResults('', 100));
+
+window.store = store;
+
 store.subscribe(() => {
   console.log(store.getState());
 });
-
-store.dispatch(fetchStocksSearchResults(null, 1));
 
 ReactDOM.render(
   <Provider store={store}>

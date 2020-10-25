@@ -6,14 +6,21 @@ const ApplicationState = {
   IDLE: 'IDLE',
   FETCHING_DATA: 'FETCHING_DATA',
   SEARCHING: 'SEARCHING',
+  ERROR: 'ERROR',
 };
 
-const initialState = ApplicationState.IDLE;
+const initialState = {
+  state: ApplicationState.IDLE,
+  error: '',
+};
 
 const applicationStateReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.UPDATE_STATE:
-      return action.state;
+      return {
+        state: action.state,
+        error: action.error || '',
+      };
     default:
       return state;
   }
