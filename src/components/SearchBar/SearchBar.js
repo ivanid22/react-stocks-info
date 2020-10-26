@@ -13,7 +13,7 @@ const renderSuggestion = suggestion => (
   </div>
 );
 
-const SearchBar = ({ stocksPool, submitSearch }) => {
+const SearchBar = ({ stocksPool, submitSearch, hideSearchBar }) => {
   const [searchValue, setSearchValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const history = useHistory();
@@ -45,10 +45,18 @@ const SearchBar = ({ stocksPool, submitSearch }) => {
   };
 
   const onKeyDown = event => {
-    if (event.key === 'Enter' && (searchValue.length > 0)) {
-      submitSearch(searchValue);
-      setSearchValue('');
-      history.push('/');
+    switch (event.key) {
+      case 'Enter':
+        submitSearch(searchValue);
+        hideSearchBar();
+        setSearchValue('');
+        history.push('/');
+        break;
+      case 'Escape':
+        setSearchValue('');
+        hideSearchBar();
+        break;
+      default:
     }
   };
 
@@ -76,6 +84,7 @@ const SearchBar = ({ stocksPool, submitSearch }) => {
 SearchBar.propTypes = {
   stocksPool: PropTypes.arrayOf(PropTypes.object).isRequired,
   submitSearch: PropTypes.func.isRequired,
+  hideSearchBar: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
