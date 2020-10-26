@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Autosuggest from 'react-autosuggest';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchStocksSearchResults } from '../../actions/stocks';
 import './SearchBar.css';
 
-const getSuggestionValue = suggestion => suggestion.name;
+const getSuggestionValue = suggestion => suggestion.companyName;
 const renderSuggestion = suggestion => (
   <div>
-    {`${suggestion.name} - ${suggestion.exchange}`}
+    {`${suggestion.companyName} - ${suggestion.exchangeShortName}`}
   </div>
 );
 
-const SearchBar = () => {
+const SearchBar = ({ stocksPool, submitSearch }) => {
   const [searchValue, setSearchValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
@@ -18,40 +20,15 @@ const SearchBar = () => {
     setSearchValue(newValue);
   };
 
-  const inputProps = {
-    placeholder: 'Enter a stock name',
-    value: searchValue,
-    onChange,
-  };
-
-  useEffect(() => {
-    // Fetch suggestions from API whenever the search value changes
-    axios.get(`${process.env.REACT_APP_API_URL}/search`, {
-      params: {
-        query: inputProps.value,
-        limit: 10,
-        apikey: process.env.REACT_APP_API_KEY,
-      },
-    }).then(response => {
-      console.log('response ', response);
-      setSuggestions(response.data.map(item => (
-        {
-          name: item.name,
-          exchange: item.exchangeShortName,
-        }
-      )));
-    });
-  }, [inputProps.value]);
-
   const onSuggestionsClearRequested = () => {
     setSuggestions([]);
   };
 
   const getSuggestions = value => {
     if (value.length === 0) return [];
-    const inputValue = value.trim().toLowerCase();
-    return suggestions.filter(stock => {
-      const substr = stock.name.toLowerCase().slice(0, inputValue.length);
+    const inputValue = value.trim();
+    return stocksPool.filter(stock => {
+      const substr = stock.companyName.toLowerCase().slice(0, inputValue.length);
       return substr === value;
     });
   };
@@ -60,9 +37,25 @@ const SearchBar = () => {
     setSuggestions(getSuggestions(value));
   };
 
-  const onSuggestionSelected = (event, { suggestion, suggestionValue }) => {
-    
-  }
+  const onSuggestionSelected = (event, { suggestionValue }) => {
+    submitSearch(suggestionValue);
+    setSearchValue('');
+  };
+
+  const onKeyDown = event => {
+    if (event.key === 'Enter' && (searchValue.length > 0)) {
+      submitSearch(searchValue);
+      setSearchValue('');
+    }
+  };
+
+  const inputProps = {
+    placeholder: 'Enter a stock name',
+    value: searchValue,
+    onKeyDown,
+    onChange,
+  };
+
 
   return (
     <Autosuggest
@@ -77,4 +70,17 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+SearchBar.propTypes = {
+  stocksPool: PropTypes.arrayOf(PropTypes.object).isRequired,
+  submitSearch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  stocksPool: state.stocks,
+});
+
+const mapDispatchToProps = dispatch => ({
+  submitSearch: term => dispatch(fetchStocksSearchResults(term, 10)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

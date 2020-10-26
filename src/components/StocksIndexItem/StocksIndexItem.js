@@ -19,7 +19,7 @@ StocksIndexItem.propTypes = {
     symbol: PropTypes.string,
     exchangeShortName: PropTypes.string,
     price: PropTypes.number,
-    currency: PropTypes.number,
+    currency: PropTypes.string,
   }).isRequired,
 };
 

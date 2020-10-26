@@ -11,7 +11,10 @@ export const setStocks = stocks => ({
 
 const { REACT_APP_API_URL, REACT_APP_API_KEY } = process.env;
 
-const getSymbolsString = symbolsArray => symbolsArray.reduce((commaSeparatedSymbols, symbol) => (`${commaSeparatedSymbols},${symbol}`));
+const getSymbolsString = symbolsArray => {
+  if (symbolsArray.length < 1) return '';
+  return symbolsArray.reduce((commaSeparatedSymbols, symbol) => (`${commaSeparatedSymbols},${symbol}`));
+};
 
 export const fetchStocksSearchResults = (searchTerm, limit = 10) => {
   return dispatch => {
@@ -39,7 +42,9 @@ export const fetchStocksSearchResults = (searchTerm, limit = 10) => {
         },
       }).then(finalResponse => {
         dispatch(setStocks(finalResponse.data));
-      }).catch(error => console.log(error.message));
+      }).catch(error => {
+        dispatch(setStocks([]));
+      });
     }).catch(error => {
       console.log(error.message);
     });

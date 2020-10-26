@@ -10,7 +10,7 @@ import App from './App';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-store.dispatch(fetchStocksSearchResults('', 1000));
+store.dispatch(fetchStocksSearchResults('', 500));
 
 window.store = store;
 
