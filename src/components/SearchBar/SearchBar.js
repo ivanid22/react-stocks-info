@@ -3,6 +3,7 @@ import Autosuggest from 'react-autosuggest';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchStocksSearchResults } from '../../actions/stocks';
+import { useHistory } from 'react-router';
 import './SearchBar.css';
 
 const getSuggestionValue = suggestion => suggestion.companyName;
@@ -15,6 +16,7 @@ const renderSuggestion = suggestion => (
 const SearchBar = ({ stocksPool, submitSearch }) => {
   const [searchValue, setSearchValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const history = useHistory();
 
   const onChange = (event, { newValue }) => {
     setSearchValue(newValue);
@@ -37,8 +39,8 @@ const SearchBar = ({ stocksPool, submitSearch }) => {
     setSuggestions(getSuggestions(value));
   };
 
-  const onSuggestionSelected = (event, { suggestionValue }) => {
-    submitSearch(suggestionValue);
+  const onSuggestionSelected = (event, { suggestion }) => {
+    history.push(`/stock/${suggestion.exchangeShortName}/${suggestion.symbol}`);
     setSearchValue('');
   };
 

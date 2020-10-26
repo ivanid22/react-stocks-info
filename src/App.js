@@ -14,7 +14,7 @@ function App() {
           <Route exact path="/">
             <StocksIndex />
           </Route>
-          <Route path="/stock/:stockName">
+          <Route path="/stock/:exchange/:symbol">
             <StockDetails />
           </Route>
           <Route>
