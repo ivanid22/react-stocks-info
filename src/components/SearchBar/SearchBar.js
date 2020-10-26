@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Autosuggest from 'react-autosuggest';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchStocksSearchResults } from '../../actions/stocks';
 import { useHistory } from 'react-router';
+import { fetchStocksSearchResults } from '../../actions/stocks';
 import './SearchBar.css';
 
 const getSuggestionValue = suggestion => suggestion.companyName;
@@ -48,6 +48,7 @@ const SearchBar = ({ stocksPool, submitSearch }) => {
     if (event.key === 'Enter' && (searchValue.length > 0)) {
       submitSearch(searchValue);
       setSearchValue('');
+      history.push('/');
     }
   };
 

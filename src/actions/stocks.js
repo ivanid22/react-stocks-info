@@ -9,6 +9,49 @@ export const setStocks = stocks => ({
   stocks,
 });
 
+const testStocks = [
+  {
+    symbol: 'TC1',
+    price: '1',
+    companyName: 'Test Company 1',
+    exchange: 'Nasdaq Global Select',
+    exchangeShortName: 'NASDAQ',
+    currency: 'USD',
+  },
+  {
+    symbol: 'TC2',
+    price: '1',
+    companyName: 'Test Company 2',
+    exchange: 'Nasdaq Global Select',
+    exchangeShortName: 'NASDAQ',
+    currency: 'USD',
+  },
+  {
+    symbol: 'TC3',
+    price: '1',
+    companyName: 'Test Company 3',
+    exchange: 'Nasdaq Global Select',
+    exchangeShortName: 'NASDAQ',
+    currency: 'USD',
+  },
+  {
+    symbol: 'TC4',
+    price: '1',
+    companyName: 'Test Company 4',
+    exchange: 'Nasdaq Global Select',
+    exchangeShortName: 'NASDAQ',
+    currency: 'USD',
+  },
+  {
+    symbol: 'TC5',
+    price: '1',
+    companyName: 'Test Company 5',
+    exchange: 'Nasdaq Global Select',
+    exchangeShortName: 'NASDAQ',
+    currency: 'USD',
+  },
+];
+
 const { REACT_APP_API_URL, REACT_APP_API_KEY } = process.env;
 
 const getSymbolsString = symbolsArray => {
@@ -49,4 +92,8 @@ export const fetchStocksSearchResults = (searchTerm, limit = 10) => {
       console.log(error.message);
     });
   };
+};
+
+export const fetchTest = () => dispatch => {
+  dispatch(setStocks(testStocks));
 };
