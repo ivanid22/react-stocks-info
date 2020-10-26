@@ -6,7 +6,7 @@ import './SearchBar.css';
 const getSuggestionValue = suggestion => suggestion.name;
 const renderSuggestion = suggestion => (
   <div>
-    {suggestion.name}
+    {`${suggestion.name} - ${suggestion.exchange}`}
   </div>
 );
 
@@ -32,12 +32,15 @@ const SearchBar = () => {
         limit: 10,
         apikey: process.env.REACT_APP_API_KEY,
       },
-    }).then(response => setSuggestions(response.data.map(item => (
-      {
-        name: item.name,
-        exchange: item.exchangeShortName,
-      }
-    ))));
+    }).then(response => {
+      console.log('response ', response);
+      setSuggestions(response.data.map(item => (
+        {
+          name: item.name,
+          exchange: item.exchangeShortName,
+        }
+      )));
+    });
   }, [inputProps.value]);
 
   const onSuggestionsClearRequested = () => {
