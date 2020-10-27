@@ -1,0 +1,24 @@
+@import '../../styles/common';
+
+.headerContainer {
+  background: #20202a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+.headerButton {
+  background-color: inherit;
+  border: none;
+  color: #cdccd2;
+  padding: 0 1em;
+}
+
+.headerTitle {
+  color: #feffc3;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 24px;
+}

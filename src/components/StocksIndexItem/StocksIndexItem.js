@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import styles from './StocksIndexItem.module.css';
+import styles from './StocksIndexItem.module.scss';
 
 const StocksIndexItem = ({ stockDetails }) => {
 
@@ -22,7 +22,7 @@ StocksIndexItem.propTypes = {
     companyName: PropTypes.string,
     symbol: PropTypes.string,
     exchangeShortName: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.string,
     currency: PropTypes.string,
   }).isRequired,
 };

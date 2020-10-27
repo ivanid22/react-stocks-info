@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import styles from './StockDetails.module.css';
+import styles from './StockDetails.module.scss';
 
 const testCompany = {
   companyName: 'Test company',

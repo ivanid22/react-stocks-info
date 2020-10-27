@@ -60,13 +60,18 @@ const SearchBar = ({ stocksPool, submitSearch, hideSearchBar }) => {
     }
   };
 
+  const onBlur = () => {
+    hideSearchBar();
+    setSearchValue('');
+  };
+
   const inputProps = {
     placeholder: 'Enter a stock name',
     value: searchValue,
     onKeyDown,
     onChange,
+    onBlur,
   };
-
 
   return (
     <Autosuggest
