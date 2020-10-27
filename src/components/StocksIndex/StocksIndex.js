@@ -7,7 +7,7 @@ import filterStocks from '../../filters/stocks';
 import StocksFilterSelect from '../StocksFilterSelect/StocksFilterSelect';
 
 const renderStocks = stocks => stocks.map(stocksItem => <StocksIndexItem key={`${stocksItem.symbol}-${stocksItem.exchangeShort}`} stockDetails={stocksItem} />);
-const filterOptions = ['ALL', 'NYSE', 'DOW', 'NASDAQ'];
+const filterOptions = ['ALL', 'NYSE', 'DOW', 'NASDAQ', 'LSE', 'XETRA'];
 
 const StocksIndex = ({ stocks, setFilter }) => {
 

@@ -97,7 +97,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  submitSearch: term => dispatch(fetchStocksSearchResults(term, 10)),
+  submitSearch: term => dispatch(fetchStocksSearchResults(term)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

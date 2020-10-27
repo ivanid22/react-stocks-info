@@ -1,9 +1,21 @@
+@import '../../styles/common';
+
+.stockDetailsBackgroundContainer {
+  position: relative;
+  min-height: 50vh;
+}
+
 .stockDetailsContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
-  min-width: 100vh;
+  background: rgba(32, 32, 42, 0.35);
 }
 
 .stockDetailsItem {
@@ -11,5 +23,17 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  padding: 10px 20px;
 }
 
+.itemHeading {
+  font-size: 18px;
+  font-weight: 700;
+  color: darken($font-extra, 0%);
+}
+
+.itemValue {
+  font-weight: 500;
+  font-size: 18px;
+  color: $bg-primary;
+}

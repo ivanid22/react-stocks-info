@@ -16,12 +16,11 @@ const StocksIndexItem = ({ stockDetails }) => {
           alt="stock cover"
         />
         <div className={styles.fieldsContainer}>
-          <Link
+          <p
             className={styles.itemLink}
-            to={`/stock/${stockDetails.exchangeShortName}/${stockDetails.symbol}`}
           >
             {stockDetails.companyName}
-          </Link>
+          </p>
           <p>{stockDetails.symbol}</p>
           <p>{stockDetails.exchangeShortName}</p>
         </div>

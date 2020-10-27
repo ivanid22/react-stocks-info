@@ -59,7 +59,7 @@ const getSymbolsString = symbolsArray => {
   return symbolsArray.reduce((commaSeparatedSymbols, symbol) => (`${commaSeparatedSymbols},${symbol}`));
 };
 
-export const fetchStocksSearchResults = (searchTerm, limit = 10) => {
+export const fetchStocksSearchResults = (searchTerm, limit = 200) => {
   return dispatch => {
     const requestString = `${REACT_APP_API_URL}/search`;
     axios({

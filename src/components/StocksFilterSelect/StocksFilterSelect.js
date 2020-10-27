@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './StocksFilterSelect.module.scss';
 
 const renderOptions = options => options.map(option => (
-  <option key={`${option}-key`}>
+  <option key={`${option}-key`} className={styles.option}>
     { option }
   </option>
 ));
 
 const StocksFilterSelect = ({ onChange, options }) => (
-  <select onChange={onChange}>
+  <select className={styles.select} onChange={onChange}>
     { renderOptions(options) }
   </select>
 );

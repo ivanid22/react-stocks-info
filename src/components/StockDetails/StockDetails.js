@@ -18,7 +18,7 @@ const StockDetails = () => {
   const [details, setDetails] = useState({});
   const [error, setError] = useState('');
 
-  const backgroundImageStyle = url => ({
+  const backgroundImageStyle = (url) => ({
     backgroundImage: `url(${url})`,
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -37,34 +37,38 @@ const StockDetails = () => {
   };
 
   useEffect(() => {
-    //fetchData();
-    setDetails(testCompany);
+    fetchData();
+    setDetails(details);
   }, [symbol]);
 
   const renderDetails = () => (
     <div
-      className={styles.stockDetailsContainer}
-      // style={backgroundImageStyle(details.image)}
+      className={styles.stockDetailsBackgroundContainer}
+      style={backgroundImageStyle(details.image)}
     >
-      <div className={styles.stockDetailsItem}>
-        <span className={styles.itemHeading}>Company Name</span>
-        <span className={styles.itemValue}>{`${details.companyName}`}</span>
-      </div>
-      <div className={styles.stockDetailsItem}>
-        <span className={styles.itemHeading}>Exchange</span>
-        <span className={styles.itemValue}>{`${details.exchange}`}</span>
-      </div>
-      <div className={styles.stockDetailsItem}>
-        <span className={styles.itemHeading}>Market cap</span>
-        <span className={styles.itemValue}>{`${details.mktCap}`}</span>
-      </div>
-      <div className={styles.stockDetailsItem}>
-        <span className={styles.itemHeading}>Stock price</span>
-        <span className={styles.itemValue}>{`${details.price} ${details.currency}`}</span>
-      </div>
-      <div className={styles.stockDetailsItem}>
-        <span className={styles.itemHeading}>Company Name</span>
-        <span className={styles.itemValue}>{`${details.companyName}`}</span>
+      <div
+        className={styles.stockDetailsContainer}
+      >
+        <div className={styles.stockDetailsItem}>
+          <span className={styles.itemHeading}>Company Name</span>
+          <span className={styles.itemValue}>{`${details.companyName}`}</span>
+        </div>
+        <div className={styles.stockDetailsItem}>
+          <span className={styles.itemHeading}>Exchange</span>
+          <span className={styles.itemValue}>{`${details.exchange}`}</span>
+        </div>
+        <div className={styles.stockDetailsItem}>
+          <span className={styles.itemHeading}>Market cap</span>
+          <span className={styles.itemValue}>{`${details.mktCap}`}</span>
+        </div>
+        <div className={styles.stockDetailsItem}>
+          <span className={styles.itemHeading}>Stock price</span>
+          <span className={styles.itemValue}>{`${details.price} ${details.currency}`}</span>
+        </div>
+        <div className={styles.stockDetailsItem}>
+          <span className={styles.itemHeading}>Company Name</span>
+          <span className={styles.itemValue}>{`${details.companyName}`}</span>
+        </div>
       </div>
     </div>
   );
@@ -73,16 +77,12 @@ const StockDetails = () => {
     <div className={styles.error}>
       <p>
         <strong>Error! </strong>
-        { `${error}` }
+        {`${error}`}
       </p>
     </div>
-  )
-
-  return (
-    <div>
-      { (error.length > 0) ? renderError() : renderDetails() }
-    </div>
   );
+
+  return <div>{error.length > 0 ? renderError() : renderDetails()}</div>;
 };
 
 export default StockDetails;
