@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './StockDetails.module.scss';
 import Spinner from '../Spinner/Spinner';
-import setApplicationState from '../../actions/applicationState'
+import setApplicationState from '../../actions/applicationState';
 
 const StockDetails = ({ applicationState, setApplicationState }) => {
   const { symbol } = useParams();

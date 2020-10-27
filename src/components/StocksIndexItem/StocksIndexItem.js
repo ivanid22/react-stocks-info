@@ -3,31 +3,29 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './StocksIndexItem.module.scss';
 
-const StocksIndexItem = ({ stockDetails }) => {
-  return (
-    <Link
-      className={styles.containerAnchor}
-      to={`/stock/${stockDetails.exchangeShortName}/${stockDetails.symbol}`}
-    >
-      <div className={styles.stocksItemContainer}>
-        <img
-          src={stockDetails.image}
-          className={styles.coverImage}
-          alt="stock cover"
-        />
-        <div className={styles.fieldsContainer}>
-          <p
-            className={styles.itemLink}
-          >
-            {stockDetails.companyName}
-          </p>
-          <p>{stockDetails.symbol}</p>
-          <p>{stockDetails.exchangeShortName}</p>
-        </div>
+const StocksIndexItem = ({ stockDetails }) => (
+  <Link
+    className={styles.containerAnchor}
+    to={`/stock/${stockDetails.exchangeShortName}/${stockDetails.symbol}`}
+  >
+    <div className={styles.stocksItemContainer}>
+      <img
+        src={stockDetails.image}
+        className={styles.coverImage}
+        alt="stock cover"
+      />
+      <div className={styles.fieldsContainer}>
+        <p
+          className={styles.itemLink}
+        >
+          {stockDetails.companyName}
+        </p>
+        <p>{stockDetails.symbol}</p>
+        <p>{stockDetails.exchangeShortName}</p>
       </div>
-    </Link>
-  );
-};
+    </div>
+  </Link>
+);
 
 StocksIndexItem.propTypes = {
   stockDetails: PropTypes.shape({

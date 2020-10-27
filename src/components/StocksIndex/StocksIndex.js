@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import StocksIndexItem from '../StocksIndexItem/StocksIndexItem';
 import setFilter from '../../actions/filter';
 import filterStocks from '../../filters/stocks';
@@ -11,12 +11,11 @@ const renderStocks = stocks => stocks.map(stocksItem => <StocksIndexItem key={`$
 const filterOptions = ['ALL', 'NYSE', 'DOW', 'NASDAQ', 'LSE', 'XETRA'];
 
 const StocksIndex = ({ stocks, setFilter, applicationState }) => {
-
   const onFilterChange = event => {
     setFilter(event.target.value);
   };
 
-  return(
+  return (
     <div>
       <StocksFilterSelect onChange={onFilterChange} options={filterOptions} />
       {applicationState === 'FETCHING_DATA' ? <Spinner /> : renderStocks(stocks) }
@@ -27,6 +26,7 @@ const StocksIndex = ({ stocks, setFilter, applicationState }) => {
 StocksIndex.propTypes = {
   stocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   setFilter: PropTypes.func.isRequired,
+  applicationState: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

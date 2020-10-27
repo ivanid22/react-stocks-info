@@ -1,5 +1,5 @@
 import axios from 'axios';
-import setApplicationState from '../actions/applicationState';
+import setApplicationState from './applicationState';
 
 export const ActionType = {
   SET_STOCKS: 'SET_STOCKS',
