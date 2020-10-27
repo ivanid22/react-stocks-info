@@ -4,16 +4,29 @@ import { Link } from 'react-router-dom';
 import styles from './StocksIndexItem.module.scss';
 
 const StocksIndexItem = ({ stockDetails }) => {
-
   return (
-    <div className={styles.stocksItemContainer}>
-      <Link to={`/stock/${stockDetails.exchangeShortName}/${stockDetails.symbol}`}>
-        {stockDetails.companyName}
-      </Link>
-      <p>{stockDetails.symbol}</p>
-      <p>{stockDetails.exchangeShortName}</p>
-      <p>{`${stockDetails.price} ${stockDetails.currency}`}</p>
-    </div>
+    <Link
+      className={styles.containerAnchor}
+      to={`/stock/${stockDetails.exchangeShortName}/${stockDetails.symbol}`}
+    >
+      <div className={styles.stocksItemContainer}>
+        <img
+          src={stockDetails.image}
+          className={styles.coverImage}
+          alt="stock cover"
+        />
+        <div className={styles.fieldsContainer}>
+          <Link
+            className={styles.itemLink}
+            to={`/stock/${stockDetails.exchangeShortName}/${stockDetails.symbol}`}
+          >
+            {stockDetails.companyName}
+          </Link>
+          <p>{stockDetails.symbol}</p>
+          <p>{stockDetails.exchangeShortName}</p>
+        </div>
+      </div>
+    </Link>
   );
 };
 
@@ -22,8 +35,7 @@ StocksIndexItem.propTypes = {
     companyName: PropTypes.string,
     symbol: PropTypes.string,
     exchangeShortName: PropTypes.string,
-    price: PropTypes.string,
-    currency: PropTypes.string,
+    image: PropTypes.string,
   }).isRequired,
 };
 

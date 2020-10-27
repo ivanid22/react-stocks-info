@@ -47,7 +47,7 @@ const SearchBar = ({ stocksPool, submitSearch, hideSearchBar }) => {
   const onKeyDown = event => {
     switch (event.key) {
       case 'Enter':
-        submitSearch(searchValue);
+        if (searchValue.length > 0) submitSearch(searchValue);
         hideSearchBar();
         setSearchValue('');
         history.push('/');

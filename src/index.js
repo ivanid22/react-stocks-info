@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/index';
 import { fetchStocksSearchResults, fetchTest } from './actions/stocks';
-import './index.css';
+//import './index.css';
 import App from './App';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

@@ -1,6 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   max-width: 720px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
 }
