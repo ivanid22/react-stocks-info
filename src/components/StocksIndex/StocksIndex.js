@@ -5,11 +5,12 @@ import StocksIndexItem from '../StocksIndexItem/StocksIndexItem';
 import setFilter from '../../actions/filter';
 import filterStocks from '../../filters/stocks';
 import StocksFilterSelect from '../StocksFilterSelect/StocksFilterSelect';
+import Spinner from '../Spinner/Spinner';
 
 const renderStocks = stocks => stocks.map(stocksItem => <StocksIndexItem key={`${stocksItem.symbol}-${stocksItem.exchangeShort}`} stockDetails={stocksItem} />);
 const filterOptions = ['ALL', 'NYSE', 'DOW', 'NASDAQ', 'LSE', 'XETRA'];
 
-const StocksIndex = ({ stocks, setFilter }) => {
+const StocksIndex = ({ stocks, setFilter, applicationState }) => {
 
   const onFilterChange = event => {
     setFilter(event.target.value);
@@ -18,7 +19,7 @@ const StocksIndex = ({ stocks, setFilter }) => {
   return(
     <div>
       <StocksFilterSelect onChange={onFilterChange} options={filterOptions} />
-      {renderStocks(stocks)}
+      {applicationState === 'FETCHING_DATA' ? <Spinner /> : renderStocks(stocks) }
     </div>
   );
 };
@@ -30,6 +31,7 @@ StocksIndex.propTypes = {
 
 const mapStateToProps = state => ({
   stocks: filterStocks(state.stocks, state.filter),
+  applicationState: state.applicationState,
 });
 
 const mapDispatchToProps = dispatch => ({

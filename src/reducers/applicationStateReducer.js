@@ -5,22 +5,14 @@ const ActionType = {
 const ApplicationState = {
   IDLE: 'IDLE',
   FETCHING_DATA: 'FETCHING_DATA',
-  SEARCHING: 'SEARCHING',
-  ERROR: 'ERROR',
 };
 
-const initialState = {
-  state: ApplicationState.IDLE,
-  error: '',
-};
+const initialState = ApplicationState.IDLE;
 
 const applicationStateReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.UPDATE_STATE:
-      return {
-        state: action.state,
-        error: action.error || '',
-      };
+      return action.state;
     default:
       return state;
   }

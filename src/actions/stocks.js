@@ -1,4 +1,5 @@
 import axios from 'axios';
+import setApplicationState from '../actions/applicationState';
 
 export const ActionType = {
   SET_STOCKS: 'SET_STOCKS',
@@ -59,41 +60,43 @@ const getSymbolsString = symbolsArray => {
   return symbolsArray.reduce((commaSeparatedSymbols, symbol) => (`${commaSeparatedSymbols},${symbol}`));
 };
 
-export const fetchStocksSearchResults = (searchTerm, limit = 200) => {
-  return dispatch => {
-    const requestString = `${REACT_APP_API_URL}/search`;
+export const fetchStocksSearchResults = (searchTerm, limit = 200) => dispatch => {
+  dispatch(setApplicationState('FETCHING_DATA'));
+  const requestString = `${REACT_APP_API_URL}/search`;
+  axios({
+    method: 'GET',
+    url: requestString,
+    params: {
+      query: searchTerm || '',
+      limit: limit.toString(),
+      apikey: REACT_APP_API_KEY,
+    },
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }).then(response => {
+    const symbolsArray = response.data.map(stock => stock.symbol);
+    const secondRequestString = `${REACT_APP_API_URL}/profile/${getSymbolsString(symbolsArray)}`;
     axios({
       method: 'GET',
-      url: requestString,
+      url: secondRequestString,
       params: {
-        query: searchTerm || '',
-        limit: limit.toString(),
         apikey: REACT_APP_API_KEY,
       },
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(response => {
-      const symbolsArray = response.data.map(stock => stock.symbol);
-      const secondRequestString = `${REACT_APP_API_URL}/profile/${getSymbolsString(symbolsArray)}`;
-      axios({
-        method: 'GET',
-        url: secondRequestString,
-        params: {
-          apikey: REACT_APP_API_KEY,
-        },
-      }).then(finalResponse => {
-        dispatch(setStocks(finalResponse.data));
-      }).catch(error => {
-        dispatch(setStocks([]));
-      });
-    }).catch(error => {
-      console.log(error.message);
+    }).then(finalResponse => {
+      dispatch(setStocks(finalResponse.data));
+      dispatch(setApplicationState('IDLE'));
+    }).catch(() => {
+      dispatch(setStocks([]));
     });
-  };
+  });
 };
 
 export const fetchTest = () => dispatch => {
-  dispatch(setStocks(testStocks));
+  dispatch(setApplicationState('FETCHING_DATA'));
+  setTimeout(() => {
+    dispatch(setStocks(testStocks));
+    dispatch(setApplicationState('IDLE'));
+  }, 2000);
 };
