@@ -3,16 +3,6 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './StockDetails.module.scss';
 
-const testCompany = {
-  companyName: 'Test company',
-  exchange: 'NASDAQ',
-  price: '1',
-  mktCap: '10000',
-  currency: 'USD',
-  website: 'http://test.com',
-  image: 'https://financialmodelingprep.com/image-stock/AAPL.png',
-};
-
 const StockDetails = () => {
   const { symbol } = useParams();
   const [details, setDetails] = useState({});
@@ -32,7 +22,7 @@ const StockDetails = () => {
         apikey: REACT_APP_API_KEY,
       },
     });
-    if (result.data.length === 0) setError(`Could not retrieve data for symbol ${symbol}`);
+    if (result.data.length === 0) setError(`Could not retrieve data for symbol "${symbol}"`);
     else setDetails(result.data[0]);
   };
 
