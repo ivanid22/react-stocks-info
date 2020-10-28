@@ -11,8 +11,6 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 
 store.dispatch(fetchStocksSearchResults('', 200));
 
-window.store = store;
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
