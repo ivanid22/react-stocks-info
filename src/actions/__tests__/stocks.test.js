@@ -1,8 +1,4 @@
-import axios from 'axios';
-import thunk from 'redux-thunk';
-import configureMockStore from 'redux-mock-store';
 import { getSymbolsString, setStocks } from '../stocks';
-import { faItalic } from '@fortawesome/free-solid-svg-icons';
 
 describe('getSymbolsString', () => {
   const testData = ['one', 'two', 'three'];

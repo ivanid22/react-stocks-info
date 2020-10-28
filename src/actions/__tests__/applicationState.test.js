@@ -1,4 +1,3 @@
-import { faItalic } from '@fortawesome/free-solid-svg-icons';
 import setApplicationState from '../applicationState';
 
 describe('setApplicationState', () => {

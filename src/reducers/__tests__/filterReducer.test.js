@@ -1,5 +1,5 @@
 import filterReducer from '../filterReducer';
-import setFilter from '../../actions/filter'
+import setFilter from '../../actions/filter';
 
 describe('filterReducer', () => {
   it('should set filter state when passed a SET_FILTER action', () => {

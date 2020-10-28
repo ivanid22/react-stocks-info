@@ -1,4 +1,3 @@
-import { faItalic } from '@fortawesome/free-solid-svg-icons';
 import setFilter from '../filter';
 
 describe('setFilter', () => {
