@@ -35,6 +35,7 @@ const StockDetails = ({ applicationState, setApplicationState }) => {
     setApplicationState('FETCHING_DATA');
     fetchData();
     setDetails(details);
+    // eslint-disable-next-line
   }, [symbol]);
 
   const renderDetails = () => {

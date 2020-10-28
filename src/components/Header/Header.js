@@ -14,7 +14,7 @@ const Header = () => {
       </button>
       <span className={styles.headerTitle}> StocksInfo </span>
       <button type="button" className={styles.headerButton} onClick={() => setOpen(true)}>
-        <FontAwesomeIcon icon={faSearch} size="lg" />
+        <FontAwesomeIcon role="search" icon={faSearch} size="lg" />
       </button>
     </div>
   );
