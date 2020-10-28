@@ -12,7 +12,7 @@ export const setStocks = stocks => ({
 
 const { REACT_APP_API_URL, REACT_APP_API_KEY } = process.env;
 
-const getSymbolsString = symbolsArray => {
+export const getSymbolsString = symbolsArray => {
   if (symbolsArray.length < 1) return '';
   return symbolsArray.reduce((commaSeparatedSymbols, symbol) => (`${commaSeparatedSymbols},${symbol}`));
 };

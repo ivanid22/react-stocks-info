@@ -4,7 +4,7 @@ const filterStocks = (stocks, exchange, max = 100) => {
   else filteredStocks = stocks.filter(item => item.exchangeShortName === exchange);
 
   if (filteredStocks.length <= max) return filteredStocks;
-  return filteredStocks.slice(0, max - 1);
+  return filteredStocks.slice(0, max);
 };
 
 export default filterStocks;
