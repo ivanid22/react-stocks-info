@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -68,6 +68,7 @@ const StockDetails = ({ applicationState, setApplicationState }) => {
             <span className={styles.itemHeading}>Company Name</span>
             <span className={styles.itemValue}>{`${details.companyName}`}</span>
           </div>
+          <Link className={styles.link} to="/">Back to index</Link>
         </div>
       </div>
     );
