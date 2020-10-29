@@ -1,0 +1,21 @@
+@import '../../styles/common';
+
+.pageContainer {
+  background: rgba(32, 32, 42, 0.2);
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+  justify-content: space-around;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pageContainer h1 {
+  font-size: 32px;
+  color: $bg-primary;
+}
+
+.pageContainer a {
+  text-decoration: none;
+  font-size: 18px;
+}

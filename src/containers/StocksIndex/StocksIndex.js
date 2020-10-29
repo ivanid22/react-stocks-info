@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import StocksIndexItem from '../StocksIndexItem/StocksIndexItem';
+import StocksIndexItem from '../../components/StocksIndexItem/StocksIndexItem';
 import setFilter from '../../actions/filter';
 import filterStocks from '../../filters/stocks';
-import StocksFilterSelect from '../StocksFilterSelect/StocksFilterSelect';
-import Spinner from '../Spinner/Spinner';
+import StocksFilterSelect from '../../components/StocksFilterSelect/StocksFilterSelect';
+import Spinner from '../../components/Spinner/Spinner';
 
 const renderStocks = stocks => stocks.map(stocksItem => <StocksIndexItem key={`${stocksItem.symbol}-${stocksItem.exchangeShort}`} stockDetails={stocksItem} />);
 const filterOptions = ['ALL', 'NYSE', 'DOW', 'NASDAQ', 'LSE', 'XETRA'];

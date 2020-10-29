@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './StockDetails.module.scss';
-import Spinner from '../Spinner/Spinner';
+import Spinner from '../../components/Spinner/Spinner';
 import setApplicationState from '../../actions/applicationState';
 
 const StockDetails = ({ applicationState, setApplicationState }) => {

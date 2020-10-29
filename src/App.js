@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
-import StockDetails from './components/StockDetails/StockDetails';
-import StocksIndex from './components/StocksIndex/StocksIndex';
+import PageNotFound from './components/PageNotFound/PageNotFound';
+import StockDetails from './containers/StockDetails/StockDetails';
+import StocksIndex from './containers/StocksIndex/StocksIndex';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
             <StockDetails />
           </Route>
           <Route>
-            <span>This would be 404</span>
+            <PageNotFound />
           </Route>
         </Switch>
       </Router>
