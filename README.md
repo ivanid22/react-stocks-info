@@ -4,9 +4,9 @@ A React/Redux application that fetches and displays financial stocks data in rea
 
 This application uses the public API provided by [FinancialModelingPrep](https://financialmodelingprep.com/)
 
-![index](./capture-1.png)
+![index](capture-1.png)
 
-![detail](./capture-2.png)
+![detail](capture-2.png)
 
 ## Live version
 
