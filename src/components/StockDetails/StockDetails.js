@@ -18,25 +18,23 @@ const StockDetails = ({ applicationState, setApplicationState }) => {
     backgroundRepeat: 'no-repeat',
   });
 
-  const fetchData = async () => {
+  useEffect(() => {
     const { REACT_APP_API_KEY, REACT_APP_API_URL } = process.env;
     const requestString = `${REACT_APP_API_URL}/profile/${symbol}`;
-    const result = await axios.get(requestString, {
+    setApplicationState('FETCHING_DATA');
+    axios.get(requestString, {
       params: {
         apikey: REACT_APP_API_KEY,
       },
+    }).then(response => {
+      setApplicationState('IDLE');
+      if (response.data.length === 0) setError(`Could not retrieve data for symbol "${symbol}"`);
+      else setDetails(response.data[0]);
+    }).catch(e => {
+      setError(e.message);
+      setApplicationState('IDLE');
     });
-    setApplicationState('IDLE');
-    if (result.data.length === 0) setError(`Could not retrieve data for symbol "${symbol}"`);
-    else setDetails(result.data[0]);
-  };
-
-  useEffect(() => {
-    setApplicationState('FETCHING_DATA');
-    fetchData();
-    setDetails(details);
-    // eslint-disable-next-line
-  }, [symbol]);
+  }, [symbol, setApplicationState]);
 
   const renderDetails = () => {
     if (applicationState === 'FETCHING_DATA') return <Spinner />;
