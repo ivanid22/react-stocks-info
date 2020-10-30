@@ -1,0 +1,36 @@
+@import '../../styles/common';
+
+.containerAnchor {
+  text-decoration: none;
+}
+
+.stocksItemContainer {
+  min-height: 200px;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fieldsContainer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: rgba(32, 32, 42, 0.35);
+  padding: 0.5em 1em;
+}
+
+.fieldsContainer > * {
+  color: darken($color: $font-primary, $amount: 50%);
+  margin-bottom: 0.5em;
+}
+
+.itemLink {
+  font-size: 18px;
+  text-decoration: none;
+  color: $font-primary;
+}

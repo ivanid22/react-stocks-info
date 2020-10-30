@@ -1,0 +1,66 @@
+@import '../../styles/common';
+
+.stockDetailsBackgroundContainer {
+  position: relative;
+  min-height: 50vh;
+}
+
+.stockDetailsContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background: rgba(32, 32, 42, 0.35);
+}
+
+.stockDetailsItem {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.itemHeading {
+  font-size: 18px;
+  font-weight: 700;
+  color: darken($font-extra, 0%);
+}
+
+.itemValue {
+  font-weight: 500;
+  font-size: 18px;
+  color: $bg-primary;
+}
+
+.link {
+  padding: 15px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid $bg-primary;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  min-height: 50vh;
+  font-size: 24px;
+  background: rgba(32, 32, 42, 0.35);
+}
+
+.error strong {
+  color: $bg-primary;
+}
+
+.error > p {
+  color: $font-extra;
+}
