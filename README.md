@@ -44,6 +44,9 @@ REACT_APP_API_KEY=(Your personal API key)
 ### Running the app
 Once that's done, run the command `npm start`. That should open a new browser window with the app. If the browser does not open, do it manually, paste this on the url box: localhost:3000, and press enter.
 
+### Running tests
+Open a terminal on the base directory for the project and run the command `npm test`.
+
 ## Built With
   - create-react-app
   - React
